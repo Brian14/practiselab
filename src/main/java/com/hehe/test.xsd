@@ -1,0 +1,2314 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2012 rel. 2 (x64) (http://www.altova.com) by Orient Overseas Container Line Ltd. (Orient Overseas Container Line Ltd.) -->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified" attributeFormDefault="unqualified" targetNamespace="http://com.oocl.ir4.sps/joedi" xmlns="http://com.oocl.ir4.sps/joedi" version="1.0">
+    <xsd:element name="Transactions-EDIJO">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="Reordered-Transaction">
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element ref="Message-EDIJO" maxOccurs="50"/>
+                        </xsd:sequence>
+                    </xsd:complexType>
+                </xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="Message-EDIJO">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="Record-Header" minOccurs="1"/>
+                <xsd:element ref="Record-Action" minOccurs="1"/>
+                <xsd:element ref="Record-JobOrder" minOccurs="1"/>
+                <xsd:element ref="Record-Vendor" minOccurs="1"/>
+                <xsd:element ref="Record-Remarks" minOccurs="0" maxOccurs="99"/>
+                <xsd:element name="ContainerGroup" nillable="true" maxOccurs="999">
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element ref="Record-Container" minOccurs="1" maxOccurs="1"/>
+                            <xsd:element ref="Record-Seal" minOccurs="0" maxOccurs="99"/>
+                            <xsd:element ref="Record-References" minOccurs="0" maxOccurs="99"/>
+                            <xsd:element ref="Record-Route" minOccurs="0" maxOccurs="1"/>
+                            <xsd:element ref="Record-VesselVoyage" minOccurs="1" maxOccurs="1"/>
+                            <xsd:element ref="Record-PickUp" minOccurs="0" maxOccurs="1"/>
+                            <xsd:element ref="Record-Delivery" minOccurs="0" maxOccurs="1"/>
+                            <xsd:element ref="Record-Cost" minOccurs="1"/>
+                            <xsd:element ref="Record-AddlCost" minOccurs="0" maxOccurs="99"/>
+                            <xsd:element ref="Record-AppointmentRemarks" minOccurs="0" maxOccurs="2"/>
+                        </xsd:sequence>
+                    </xsd:complexType>
+                </xsd:element>
+                <xsd:element ref="Record-TotalCost" minOccurs="1" maxOccurs="1"/>
+                <xsd:element name="CargoGroup" nillable="true" minOccurs="0" maxOccurs="999">
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element ref="Record-Cargo" minOccurs="1" maxOccurs="1"/>
+                            <xsd:element ref="Record-Dangerous" minOccurs="0" maxOccurs="999"/>
+                            <xsd:element ref="Record-Reefer" minOccurs="0"/>
+                        </xsd:sequence>
+                    </xsd:complexType>
+                </xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <!-- Record-Header definition -->
+    <xsd:element name="Record-Header" nillable="false">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="Field-HeaderMessageId"/>
+                <xsd:element ref="Field-HeaderPartnerId"/>
+                <xsd:element ref="Field-HeaderDateTime"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="Field-HeaderMessageId">
+        <xsd:simpleContent>
+            <xsd:restriction base="Field-String-Type">
+                <xsd:minLength value="0"/>
+                <xsd:maxLength value="10"/>
+                <xsd:attribute name="DataType" type="xsd:string" use="optional" default="String"/>
+            </xsd:restriction>
+        </xsd:simpleContent>
+    </xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-HeaderPartnerId">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="15"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-HeaderDateTime">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="14"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+        <!-- Record-Action definition -->
+<xsd:element name="Record-Action">
+<xsd:complexType>
+    <xsd:sequence>
+        <xsd:element ref="Field-ActionStatus"/>
+        <xsd:element ref="Field-ActionEdiVersionNo"/>
+    </xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-ActionStatus">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="3"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-ActionEdiVersionNo">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="3"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+        <!-- Record-JobOrder definition -->
+<xsd:element name="Record-JobOrder">
+<xsd:complexType>
+    <xsd:sequence>
+        <xsd:element ref="Field-JobOrderCde"/>
+        <xsd:element ref="Field-JobOrderReqUsr"/>
+        <xsd:element ref="Field-JobOrderOfficeCde"/>
+        <xsd:element ref="Field-JobOrderIssueDteGmt"/>
+        <xsd:element ref="Field-JobOrderIssueDteLoc"/>
+        <xsd:element ref="Field-JobOrderIssueDteTimeZone"/>
+        <xsd:element ref="Field-JobOrderTruckcomStatus"/>
+        <xsd:element ref="Field-JobOrderOffceUnLoc"/>
+        <xsd:element ref="Field-JobOrderOffceCdeNme"/>
+        <xsd:element ref="Field-JobOrderActivityDateLoc"/>
+    </xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-JobOrderCde">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="12"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-JobOrderReqUsr" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="8"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-JobOrderOfficeCde" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="3"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-JobOrderIssueDteGmt" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="14"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-JobOrderIssueDteLoc" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="14"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-JobOrderIssueDteTimeZone" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="3"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-JobOrderTruckcomStatus" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="20"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-JobOrderOffceUnLoc" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="5"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-JobOrderOffceCdeNme" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="35"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-JobOrderActivityDateLoc" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="14"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+        <!-- Record-JobOrder definition -->
+<xsd:element name="Record-Vendor">
+<xsd:complexType>
+    <xsd:sequence>
+        <xsd:element ref="Field-VendorCde"/>
+        <xsd:element ref="Field-VendorOffice"/>
+        <xsd:element ref="Field-VendorName"/>
+        <xsd:element ref="Field-VendorAddress"/>
+    </xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-VendorCde">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="15"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-VendorOffice" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="3"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-VendorName">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="50"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-VendorAddress" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="300"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+        <!-- Record-Remarks definition -->
+<xsd:element name="Record-Remarks" nillable="true">
+<xsd:complexType>
+    <xsd:sequence>
+        <xsd:element ref="Field-RemarksText"/>
+        <xsd:element ref="Field-RemarksCreDteGmt"/>
+        <xsd:element ref="Field-RemarksCreDteLoc"/>
+        <xsd:element ref="Field-RemarksCreDteTimeZone"/>
+        <xsd:element ref="Field-RemarksUser"/>
+    </xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-RemarksText">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="240"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-RemarksCreDteGmt" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="14"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-RemarksCreDteLoc" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="14"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-RemarksCreDteTimeZone" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="3"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-RemarksUser" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="8"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+        <!-- Record-Container definition -->
+<xsd:element name="Record-Container">
+<xsd:complexType>
+    <xsd:sequence>
+        <xsd:element ref="Field-ContainerNumber"/>
+        <xsd:element ref="Field-ContainerCheckDigit"/>
+        <xsd:element ref="Field-ContainerInternalReference"/>
+        <xsd:element ref="Field-ContainerSizeType"/>
+        <xsd:element ref="Field-ContainerNetWt"/>
+        <xsd:element ref="Field-ContainerNetWtUnit"/>
+        <xsd:element ref="Field-ContainerGrossWt"/>
+        <xsd:element ref="Field-ContainerGrossWtUnit"/>
+        <xsd:element ref="Field-ContainerDropNPull"/>
+        <xsd:element ref="Field-ContainerJobUuid"/>
+        <xsd:element ref="Field-ContainerPinNumber"/>
+    </xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-ContainerNumber">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="11"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-ContainerCheckDigit">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="2"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-ContainerInternalReference">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="11"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-ContainerSizeType">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="4"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-ContainerNetWt">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="16"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-ContainerNetWtUnit">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="3"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-ContainerGrossWt">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="16"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-ContainerGrossWtUnit">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="3"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-ContainerDropNPull" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="1"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-ContainerJobUuid" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="20"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-ContainerPinNumber" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="35"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-ContainerIssuAtBLInd" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="1"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-ContainerIssuAtCntrInd" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="1"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+        <!-- Record-Seal definition -->
+<xsd:element name="Record-Seal" nillable="true">
+<xsd:complexType>
+    <xsd:sequence>
+        <xsd:element ref="Field-SealType"/>
+        <xsd:element ref="Field-SealNumber"/>
+    </xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-SealType">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="2"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-SealNumber">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="12"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+        <!-- Record-References definition -->
+<xsd:element name="Record-References" nillable="true">
+<xsd:complexType>
+    <xsd:sequence>
+        <xsd:element ref="Field-ReferenceQualifier"/>
+        <xsd:element ref="Field-ReferenceNumber"/>
+    </xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-ReferenceQualifier">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="3"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-ReferenceNumber">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="35"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+        <!-- Record-Route definition -->
+<xsd:element name="Record-Route" nillable="true">
+<xsd:complexType>
+    <xsd:sequence>
+        <xsd:element ref="Field-RouteCutOffDteGmt"/>
+        <xsd:element ref="Field-RouteCutOffDteLoc"/>
+        <xsd:element ref="Field-RouteCutOffDteTimeZone"/>
+        <xsd:element ref="Field-RouteAvlDteGmt"/>
+        <xsd:element ref="Field-RouteAvlDteLoc"/>
+        <xsd:element ref="Field-RouteAvlDteTimeZone"/>
+        <xsd:element ref="Field-RouteEtdLoc"/>
+        <xsd:element ref="Field-RouteEtaLoc"/>
+        <xsd:element ref="Field-RouteEtdEtaLocTimeZone"/>
+        <xsd:element ref="Field-RouteEtdGmt"/>
+        <xsd:element ref="Field-RouteEtaGmt"/>
+        <xsd:element ref="Field-RouteEtdEtaGmtTimeZone"/>
+        <xsd:element ref="Field-RouteMtPuDteLoc"/>
+        <xsd:element ref="Field-RouteMtPuDteLocTimeZone"/>
+        <xsd:element ref="Field-RouteMtPuDteGmt"/>
+        <xsd:element ref="Field-RouteMtPuDteGmtTimeZone"/>
+    </xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-RouteCutOffDteGmt" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="14"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-RouteCutOffDteLoc" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="14"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-RouteCutOffDteTimeZone" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="3"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-RouteAvlDteGmt" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="14"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-RouteAvlDteLoc" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="14"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-RouteAvlDteTimeZone" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="3"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-RouteEtdLoc" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="14"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-RouteEtaLoc" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="14"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-RouteEtdEtaLocTimeZone" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="3"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-RouteEtdGmt" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="14"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-RouteEtaGmt" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="14"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-RouteEtdEtaGmtTimeZone" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="3"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-RouteMtPuDteLoc" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="14"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-RouteMtPuDteLocTimeZone" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="3"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-RouteMtPuDteGmt" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="14"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-RouteMtPuDteGmtTimeZone" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="3"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+        <!-- Record-VesselVoyage definition -->
+<xsd:element name="Record-VesselVoyage">
+<xsd:complexType>
+    <xsd:sequence>
+        <xsd:element ref="Field-VVServiceLoop"/>
+        <xsd:element ref="Field-VVVesselCode"/>
+        <xsd:element ref="Field-VVVoyage"/>
+        <xsd:element ref="Field-VVDirection"/>
+        <xsd:element ref="Field-VVVesselNme"/>
+        <xsd:element ref="Field-VVPortOfReceive"/>
+        <xsd:element ref="Field-VVPortOfReceiveNme"/>
+        <xsd:element ref="Field-VVPortOfLoad"/>
+        <xsd:element ref="Field-VVPortOfLoadNme"/>
+        <xsd:element ref="Field-VVPortOfDischarge"/>
+        <xsd:element ref="Field-VVPortOfDischargeNme"/>
+        <xsd:element ref="Field-VVFinalDest"/>
+        <xsd:element ref="Field-VVFinalDestNme"/>
+        <xsd:element ref="Field-VVCutOffDtmGmt"/>
+        <xsd:element ref="Field-VVCutOffDtmLoc"/>
+        <xsd:element ref="Field-VVCutOffDtmTmeZone"/>
+        <xsd:element ref="Field-VVAvailDtmGmt"/>
+        <xsd:element ref="Field-VVAvailDtmLoc"/>
+        <xsd:element ref="Field-VVAvailDtmTmeZone"/>
+        <xsd:element ref="Field-VVEmptyPickUpFac"/>
+        <xsd:element ref="Field-VVFullRetFac"/>
+        <xsd:element ref="Field-VVCargoPickUpFacility"/>
+        <xsd:element ref="Field-VVEmptyRetFac"/>
+        <xsd:element ref="Field-VVFrmFacility"/>
+        <xsd:element ref="Field-VVFrmFacilityNme"/>
+        <xsd:element ref="Field-VVFrmFacilityAddr1"/>
+        <xsd:element ref="Field-VVFrmFacilityAddr2"/>
+        <xsd:element ref="Field-VVFrmFacilityAddr3"/>
+        <xsd:element ref="Field-VVFrmFacilityAddr4"/>
+        <xsd:element ref="Field-VVFrmFacilityAddr5"/>
+        <xsd:element ref="Field-VVFrmFacilityCity"/>
+        <xsd:element ref="Field-VVFrmFacilityStateCde"/>
+        <xsd:element ref="Field-VVFrmFacilityCountryCde"/>
+        <xsd:element ref="Field-VVToFacility"/>
+        <xsd:element ref="Field-VVToFacilityNme"/>
+        <xsd:element ref="Field-VVToFacilityAddr1"/>
+        <xsd:element ref="Field-VVToFacilityAddr2"/>
+        <xsd:element ref="Field-VVToFacilityAddr3"/>
+        <xsd:element ref="Field-VVToFacilityAddr4"/>
+        <xsd:element ref="Field-VVToFacilityAddr5"/>
+        <xsd:element ref="Field-VVToFacilityCity"/>
+        <xsd:element ref="Field-VVToFacilityStateCde"/>
+        <xsd:element ref="Field-VVToFacilityCountryCde"/>
+        <xsd:element ref="Field-VVTransMode"/>
+        <xsd:element ref="Field-VVRouteSegDir"/>
+        <xsd:element ref="Field-VVRouteSegType"/>
+        <xsd:element ref="Field-VVFacilityCode"/>
+        <xsd:element ref="Field-VVFacilityName"/>
+    </xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-VVServiceLoop" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="4"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-VVVesselCode" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="3"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-VVVoyage" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="3"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-VVDirection" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="1"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-VVVesselNme" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="30"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-VVPortOfReceive" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="5"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-VVPortOfReceiveNme" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="60"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-VVPortOfLoad" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="5"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-VVPortOfLoadNme" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="35"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-VVPortOfDischarge" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="5"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-VVPortOfDischargeNme" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="35"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-VVFinalDest" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="5"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-VVFinalDestNme" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="60"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-VVCutOffDtmGmt" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="14"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-VVCutOffDtmLoc" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="14"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-VVCutOffDtmTmeZone" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="3"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-VVAvailDtmGmt" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="14"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-VVAvailDtmLoc" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="14"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-VVAvailDtmTmeZone" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="3"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-VVEmptyPickUpFac" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="5"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-VVFullRetFac" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="5"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-VVCargoPickUpFacility" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="5"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-VVEmptyRetFac" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="5"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-VVFrmFacility">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="5"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-VVFrmFacilityNme">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="30"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-VVFrmFacilityAddr1" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="35"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-VVFrmFacilityAddr2" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="35"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-VVFrmFacilityAddr3" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="35"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-VVFrmFacilityAddr4" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="35"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-VVFrmFacilityAddr5" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="35"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-VVFrmFacilityCity" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="60"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-VVFrmFacilityStateCde" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="2"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-VVFrmFacilityCountryCde" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="2"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-VVToFacility" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="5"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-VVToFacilityNme" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="30"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-VVToFacilityAddr1" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="35"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-VVToFacilityAddr2" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="35"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-VVToFacilityAddr3" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="35"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-VVToFacilityAddr4" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="35"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-VVToFacilityAddr5" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="35"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-VVToFacilityCity" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="60"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-VVToFacilityStateCde" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="2"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-VVToFacilityCountryCde" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="2"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-VVTransMode" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="10"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-VVRouteSegDir">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="8"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-VVRouteSegType">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="10"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-VVFacilityCode" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="5"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-VVFacilityName" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="30"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+        <!-- Record-Route definition -->
+<xsd:element name="Record-PickUp" nillable="true">
+<xsd:complexType>
+    <xsd:sequence>
+        <xsd:element ref="Field-PickUpSchedDteGmt"/>
+        <xsd:element ref="Field-PickUpSchedDteLoc"/>
+        <xsd:element ref="Field-PickUpSchedDteTimeZone"/>
+        <xsd:element ref="Field-PickUpLocation"/>
+        <xsd:element ref="Field-PickUpCity"/>
+        <xsd:element ref="Field-PickUpState"/>
+        <xsd:element ref="Field-PickUpCountry"/>
+        <xsd:element ref="Field-PickUpAddress1"/>
+        <xsd:element ref="Field-PickUpAddress2"/>
+        <xsd:element ref="Field-PickUpAddress3"/>
+        <xsd:element ref="Field-PickUpAddress4"/>
+        <xsd:element ref="Field-PickUpAddress5"/>
+        <xsd:element ref="Field-PickUpCustomer"/>
+        <xsd:element ref="Field-PickUpContactName"/>
+        <xsd:element ref="Field-PickUpContactNo"/>
+    </xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-PickUpSchedDteGmt" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="14"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-PickUpSchedDteLoc" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="14"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-PickUpSchedDteTimeZone" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="3"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-PickUpLocation" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="35"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-PickUpCity" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="60"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-PickUpState" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="2"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-PickUpCountry" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="2"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-PickUpAddress1" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="35"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-PickUpAddress2" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="35"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-PickUpAddress3" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="35"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-PickUpAddress4" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="35"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-PickUpAddress5" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="35"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-PickUpCustomer" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="35"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-PickUpContactName" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="35"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-PickUpContactNo" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="22"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+        <!--  definition -->
+<xsd:element name="Record-Delivery" nillable="true">
+<xsd:complexType>
+    <xsd:sequence>
+        <xsd:element ref="Field-DeliverySchedDteGmt"/>
+        <xsd:element ref="Field-DeliverySchedDteLoc"/>
+        <xsd:element ref="Field-DeliverySchedDteTimeZone"/>
+        <xsd:element ref="Field-DeliveryLocation"/>
+        <xsd:element ref="Field-DeliveryCity"/>
+        <xsd:element ref="Field-DeliveryState"/>
+        <xsd:element ref="Field-DeliveryCountry"/>
+        <xsd:element ref="Field-DeliveryAddress1"/>
+        <xsd:element ref="Field-DeliveryAddress2"/>
+        <xsd:element ref="Field-DeliveryAddress3"/>
+        <xsd:element ref="Field-DeliveryAddress4"/>
+        <xsd:element ref="Field-DeliveryAddress5"/>
+        <xsd:element ref="Field-DeliveryCustomer"/>
+        <xsd:element ref="Field-DeliveryContactName"/>
+        <xsd:element ref="Field-DeliveryContactNo"/>
+    </xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-DeliverySchedDteGmt" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="14"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-DeliverySchedDteLoc" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="14"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-DeliverySchedDteTimeZone" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="3"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-DeliveryLocation" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="35"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-DeliveryCity" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="60"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-DeliveryState" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="2"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-DeliveryCountry" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="2"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-DeliveryAddress1" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="35"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-DeliveryAddress2" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="35"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-DeliveryAddress3" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="35"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-DeliveryAddress4" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="35"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-DeliveryAddress5" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="35"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-DeliveryCustomer" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="35"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-DeliveryContactName" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="35"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-DeliveryContactNo" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="22"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+        <!-- Record-Cost definition -->
+<xsd:element name="Record-Cost">
+<xsd:complexType>
+    <xsd:sequence>
+        <xsd:element ref="Field-CostOrigAmount"/>
+        <xsd:element ref="Field-CostOrigCurrency"/>
+        <xsd:element ref="Field-CostOrigAmountUsd"/>
+        <xsd:element ref="Field-CostRevAmount"/>
+        <xsd:element ref="Field-CostRevAmountCurrency"/>
+        <xsd:element ref="Field-CostRevAmountUsd"/>
+        <xsd:element ref="Field-CostRemarks"/>
+    </xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-CostOrigAmount">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="15"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-CostOrigCurrency">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="3"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-CostOrigAmountUsd">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="15"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-CostRevAmount" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="15"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-CostRevAmountCurrency" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="3"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-CostRevAmountUsd" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="15"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-CostRemarks" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="240"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+        <!-- Record-AddlCost definition -->
+<xsd:element name="Record-AddlCost" nillable="true">
+<xsd:complexType>
+    <xsd:sequence>
+        <xsd:element ref="Field-AddlCostOrigAmount"/>
+        <xsd:element ref="Field-AddlCostOrigCurrency"/>
+        <xsd:element ref="Field-AddlCostOrigAmountUsd"/>
+        <xsd:element ref="Field-AddlCostRevAmount"/>
+        <xsd:element ref="Field-AddlCostRevAmountCurrency"/>
+        <xsd:element ref="Field-AddlCostRevAmountUsd"/>
+        <xsd:element ref="Field-AddlCostDescription"/>
+        <xsd:element ref="Field-AddlCostRemarks"/>
+    </xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-AddlCostOrigAmount">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="15"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-AddlCostOrigCurrency">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="3"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-AddlCostOrigAmountUsd">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="15"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-AddlCostRevAmount" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="15"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-AddlCostRevAmountCurrency" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="3"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-AddlCostRevAmountUsd" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="15"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-AddlCostDescription" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="30"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-AddlCostRemarks" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="240"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+        <!-- Record-AppointmentRemarks definition -->
+<xsd:element name="Record-AppointmentRemarks" nillable="true">
+<xsd:complexType>
+    <xsd:sequence>
+        <xsd:element ref="Field-AppointmentRemarksLeg"/>
+        <xsd:element ref="Field-AppointmentRemarks"/>
+    </xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-AppointmentRemarksLeg" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="2"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-AppointmentRemarks" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="240"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+        <!-- Record-TotalCost definition -->
+<xsd:element name="Record-TotalCost">
+<xsd:complexType>
+    <xsd:sequence>
+        <xsd:element ref="Field-TotalCostAmt"/>
+        <xsd:element ref="Field-TotalCostCurrency"/>
+        <xsd:element ref="Field-TotalCostAmtUsd"/>
+    </xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-TotalCostAmt">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="15"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-TotalCostCurrency">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="3"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-TotalCostAmtUsd">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="15"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+        <!-- Record-Cargo definition -->
+<xsd:element name="Record-Cargo">
+<xsd:complexType>
+    <xsd:sequence>
+        <xsd:element ref="Field-CargoDescription"/>
+        <xsd:element ref="Field-CargoPackQuantity"/>
+        <xsd:element ref="Field-CargoPackType"/>
+        <xsd:element ref="Field-CargoGrossWt"/>
+        <xsd:element ref="Field-CargoGrossWtUnit"/>
+        <xsd:element ref="Field-CargoNetWt"/>
+        <xsd:element ref="Field-CargoNetWtUnit"/>
+        <xsd:element ref="Field-CargoAssocBkgNumber"/>
+        <xsd:element ref="Field-CargoAssocCntrNumber"/>
+        <xsd:element ref="Field-CargoHsCode"/>
+    </xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-CargoDescription" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="60"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-CargoPackQuantity" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="9"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-CargoPackType" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="3"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-CargoGrossWt" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="16"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-CargoGrossWtUnit" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="3"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-CargoNetWt" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="16"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-CargoNetWtUnit" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="3"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-CargoAssocBkgNumber" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="35"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-CargoAssocCntrNumber" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="11"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-CargoHsCode" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="12"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Record-Dangerous" nillable="true">
+<xsd:complexType>
+    <xsd:sequence>
+        <xsd:element ref="Field-DangerousPropShipNme"/>
+        <xsd:element ref="Field-DangerousUnNumber"/>
+        <xsd:element ref="Field-DangerousImcoClass"/>
+        <xsd:element ref="Field-DangerousPackGrp"/>
+        <xsd:element ref="Field-DangerousQuantity"/>
+        <xsd:element ref="Field-DangerousPackCode"/>
+        <xsd:element ref="Field-DangerousLadingQty"/>
+        <xsd:element ref="Field-DangerousStcc"/>
+        <xsd:element ref="Field-DangerousTechNme"/>
+        <xsd:element ref="Field-DangerousGrossWt"/>
+        <xsd:element ref="Field-DangerousGrossWtUnit"/>
+        <xsd:element ref="Field-DangerousNetWt"/>
+        <xsd:element ref="Field-DangerousNetWtUnit"/>
+        <xsd:element ref="Field-DangerousEmerContactOb"/>
+        <xsd:element ref="Field-DangerousEmerContactNoOb"/>
+        <xsd:element ref="Field-DangerousEmerContactIb"/>
+        <xsd:element ref="Field-DangerousEmerContactNoIb"/>
+        <xsd:element ref="Field-DangerousSubRisk1"/>
+        <xsd:element ref="Field-DangerousSubRisk2"/>
+        <xsd:element ref="Field-DangerousEmerSchedNumber"/>
+        <xsd:element ref="Field-DangerousIsLimitedQty"/>
+        <xsd:element ref="Field-DangerousIsMarPollutant"/>
+    </xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-DangerousPropShipNme" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="80"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-DangerousUnNumber" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="10"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-DangerousImcoClass" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="15"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-DangerousPackGrp" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="8"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-DangerousQuantity" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="9"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-DangerousPackCode" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="3"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-DangerousLadingQty" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="9"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-DangerousStcc" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="10"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-DangerousTechNme" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="180"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-DangerousGrossWt" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="16"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-DangerousGrossWtUnit" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="3"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-DangerousNetWt" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="16"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-DangerousNetWtUnit" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="3"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-DangerousEmerContactOb" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="35"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-DangerousEmerContactNoOb" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="18"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-DangerousEmerContactIb" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="35"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-DangerousEmerContactNoIb" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="18"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-DangerousSubRisk1" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="120"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-DangerousSubRisk2" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="120"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-DangerousEmerSchedNumber" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="15"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-DangerousIsLimitedQty" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="1"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-DangerousIsMarPollutant" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="1"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Record-Reefer" nillable="true">
+<xsd:complexType>
+    <xsd:sequence>
+        <xsd:element ref="Field-ReeferTemperature"/>
+        <xsd:element ref="Field-ReeferTempUnit"/>
+        <xsd:element ref="Field-ReeferVent"/>
+        <xsd:element ref="Field-ReeferVentUnit"/>
+        <xsd:element ref="Field-ReeferCo2Setting"/>
+        <xsd:element ref="Field-ReeferO2Setting"/>
+    </xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-ReeferTemperature" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="9"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-ReeferTempUnit" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="1"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-ReeferVent" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="3"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-ReeferVentUnit" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="10"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-ReeferCo2Setting" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="3"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="Field-ReeferO2Setting" nillable="true">
+<xsd:complexType>
+    <xsd:simpleContent>
+        <xsd:restriction base="Field-String-Type">
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="3"/>
+        </xsd:restriction>
+    </xsd:simpleContent>
+</xsd:complexType>
+</xsd:element>
+<xsd:complexType name="Field-String-Type">
+<xsd:simpleContent>
+    <xsd:extension base="xsd:string">
+        <xsd:attribute name="Type" type="xsd:string" use="optional" default="Field"/>
+        <xsd:attribute name="DataType" type="xsd:string" use="optional" default="String"/>
+    </xsd:extension>
+</xsd:simpleContent>
+</xsd:complexType>
+        </xsd:schema>
