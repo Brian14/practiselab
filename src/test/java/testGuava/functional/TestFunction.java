@@ -26,4 +26,10 @@ public class TestFunction {
 
     }
 
+//    @Test
+//    public void testFunction2() {
+//        Function<>
+//    }
+
+
 }
