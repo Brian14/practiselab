@@ -5,4 +5,9 @@ package testGuava.predicate;
  * Date: 2014/8/26
  */
 public class TestPredicate {
+
+
+
+
+
 }
