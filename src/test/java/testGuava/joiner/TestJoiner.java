@@ -2,12 +2,14 @@ package testGuava.joiner;
 
 import com.google.common.base.Joiner;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotSame;
 import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * User: bao
@@ -19,7 +21,9 @@ public class TestJoiner {
     public void testSkipNull() {
         Joiner skipNullJoiner = Joiner.on("#").skipNulls();
 
+        //去除null元素
         List<String> stringList1 = Lists.newArrayList("qqq", "www", "eee");
+        //以list作为入参
         String result1 = skipNullJoiner.join(stringList1);
 
         System.out.println("result1:" + result1);
@@ -29,6 +33,38 @@ public class TestJoiner {
         String result2 = skipNullJoiner.join(stringList2);
         System.out.println("result2:" + result2);
     }
+
+    @Test
+    public void testArray() {
+        Joiner arrayJoiner = Joiner.on("#").skipNulls();
+        //以数组作为参数
+        String a[] = {"1", "2", "3", "4", "sss", null, "ttt"};
+        String arrayResult = arrayJoiner.join(a);
+
+        System.out.println(arrayResult);
+
+
+        //以map作为参数
+        Map<String, Integer> map = Maps.newLinkedHashMap();
+        map.put("S1", 1);
+        map.put("T2", 2);
+        map.put("W3", 3);
+
+        //以entry
+        String mapResult1 = arrayJoiner.join(map.entrySet());
+        System.out.println(mapResult1);
+
+        //以key set
+        String mapResult2 = arrayJoiner.join(map.keySet());
+        System.out.println(mapResult2);
+
+        //以value
+        String mapResult3 = arrayJoiner.join(map.values());
+        System.out.println(mapResult3);
+
+
+    }
+
 
     @Test
     public void testWithoutSkipNull() {
@@ -65,7 +101,7 @@ public class TestJoiner {
     }
 
     @Test
-    public void testUseForNull(){
+    public void testUseForNull() {
         //指定遇到null时的占位字符串
         Joiner useForNullJoiner = Joiner.on("#").useForNull("missing text");
 
@@ -79,9 +115,6 @@ public class TestJoiner {
         String result2 = useForNullJoiner.join(stringList2);
         System.out.println("result2:" + result2);
     }
-
-
-
 
 
 }
