@@ -1,11 +1,13 @@
 package testGuava.predicate;
 
 import com.google.common.base.Predicate;
+import com.google.common.collect.Iterators;
 import com.google.common.collect.Lists;
 import org.junit.Before;
 import org.junit.Test;
 import testGuava.objects.Person;
 
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -40,6 +42,11 @@ public class TestPredicate {
 
     @Test
     public void testPredict() {
+        Iterator<Person> o = Iterators.filter(personList.iterator(),agePredicate);
+
+        while (o.hasNext()){
+            System.out.println(o.next().getName());
+        }
 
 
     }
