@@ -17,6 +17,9 @@ import java.util.Map;
  */
 public class TestJoiner {
 
+    /**
+     * 使用Skip null跳过null元素
+     */
     @Test
     public void testSkipNull() {
         Joiner skipNullJoiner = Joiner.on("#").skipNulls();
@@ -100,6 +103,9 @@ public class TestJoiner {
         assertFalse(instance1.equals(instance2));
     }
 
+    /**
+     * 使用 use for null 指定遇到null时，用来占位的默认值
+     */
     @Test
     public void testUseForNull() {
         //指定遇到null时的占位字符串
@@ -115,6 +121,4 @@ public class TestJoiner {
         String result2 = useForNullJoiner.join(stringList2);
         System.out.println("result2:" + result2);
     }
-
-
 }

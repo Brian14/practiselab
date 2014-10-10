@@ -12,6 +12,9 @@ import java.util.List;
  */
 public class TestJoinerForStringBuilder {
 
+    /**
+     * 将joiner产生的字符串append在StringBuilder之后
+     */
     @Test
     public void testAppend() {
         StringBuilder stringBuilder = new StringBuilder("original***");
@@ -27,23 +30,5 @@ public class TestJoinerForStringBuilder {
         System.out.println(result==stringBuilder);
 
     }
-
-
-
-    @Test
-    public void testAppend2() {
-        StringBuilder stringBuilder = new StringBuilder("original***");
-
-        Joiner sbJoiner = Joiner.on("#").skipNulls();
-
-        List<String> stringList = Lists.newArrayList("111", "222", "333");
-
-        sbJoiner.appendTo(stringBuilder, stringList);
-
-        System.out.println(stringBuilder.toString());
-
-    }
-
-
 
 }
