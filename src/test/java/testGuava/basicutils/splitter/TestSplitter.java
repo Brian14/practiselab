@@ -1,4 +1,4 @@
-package testGuava.splitter;
+package testGuava.basicutils.splitter;
 
 import com.google.common.base.Splitter;
 import org.junit.Test;

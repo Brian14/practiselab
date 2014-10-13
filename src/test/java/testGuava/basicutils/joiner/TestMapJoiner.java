@@ -1,4 +1,4 @@
-package testGuava.joiner;
+package testGuava.basicutils.joiner;
 
 import com.google.common.base.Joiner;
 import com.google.common.base.Joiner.MapJoiner;

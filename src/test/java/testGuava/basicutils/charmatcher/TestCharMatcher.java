@@ -1,4 +1,4 @@
-package testGuava.charmatcher;
+package testGuava.basicutils.charmatcher;
 
 import com.google.common.base.CharMatcher;
 import org.junit.Test;

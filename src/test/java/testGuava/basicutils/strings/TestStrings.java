@@ -1,4 +1,4 @@
-package testGuava.strings;
+package testGuava.basicutils.strings;
 
 import static com.google.common.base.Strings.emptyToNull;
 import static com.google.common.base.Strings.isNullOrEmpty;
