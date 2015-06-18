@@ -19,7 +19,7 @@ public class TestLists {
         list1.add("third");
         list1.add("fourth");
 
-        String array1[] = {"a1","a2","a3","a4"};
+        String array1[] = {"a1", "a2", "a3", "a4"};
 
 
         for (String s : list1) {
@@ -29,10 +29,25 @@ public class TestLists {
         System.out.println("-------end first---------");
 
         //make list from array
-        List<String> list2 = Lists.asList("pre",array1);
-        for(String s: list2){
+        List<String> list2 = Lists.asList("pre", array1);
+        for (String s : list2) {
             System.out.println(s);
         }
+
+
+    }
+
+
+    @Test
+    public void testPartition() {
+        List<String> li = Lists.newArrayList();
+        for (int i = 0; i < 20; i++) {
+            li.add((new StringBuilder("content" + i)).toString());
+        }
+
+        List<List<String>> lili = Lists.partition(li, 6);
+        System.out.println(lili);
+
 
 
 

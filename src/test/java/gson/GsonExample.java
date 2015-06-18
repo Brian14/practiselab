@@ -137,17 +137,7 @@ public class GsonExample {
         System.out.println(strJson);
         System.out.println(intJson);
 
-
-        int[] anotherInts =
-
-
-
-
-
-
-
-
-
+//        int[] anotherInts =
     }
 
 
